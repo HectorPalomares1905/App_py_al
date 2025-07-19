@@ -1,0 +1,247 @@
+/* 0) Centra el “celular” en la página */
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #e0e0e0;
+}
+
+/* ----- FONDO NEGRO CON ILUMINACIÓN DIAGONAL (sin imagen) ----- */
+.phone-container {
+  position: relative;
+  width: 360px;
+  height: 640px;
+  border: 4px solid #333;
+  border-radius: 36px;
+  overflow: hidden;
+
+  background-image: url('/assets/fondo.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+/* 2) Menú hamburguesa */
+.menu-icon {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  width: 28px;
+  height: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.menu-icon .bar {
+  width: 100%;
+  height: 3px;
+  background-color: #fff;
+  border-radius: 2px;
+}
+
+/* 3) Texto centrado */
+.welcome-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+/* 4) Botón circular “+” */
+.add-button {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  width: 56px;
+  height: 56px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+/* Línea horizontal del “+” */
+.add-button .plus.horizontal {
+  position: absolute;
+  width: 32px;
+  height: 2px;
+  background-color: #fff;
+}
+/* Línea vertical del “+” */
+.add-button .plus.vertical {
+  position: absolute;
+  width: 2px;
+  height: 32px;
+  background-color: #fff;
+}
+/* Contenedor de los inputs - perfectamente centrado */
+.input-container {
+  position: absolute;
+  top: 15%; 
+  left: 50%;
+  transform: translate(-50%);
+  width: 80%;               /* ancho relativo */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Etiqueta de cada caja */
+.input-label {
+  width: 100%;
+  color: #ddd;
+  font-size: 12px;
+  margin-bottom: 4px;
+  text-align: left;
+}
+
+/* Caja de texto */
+.input-box {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background-color:#fff;
+  color: #000;
+  margin-bottom: 24px;      /* separa cada bloque */
+  outline: none;
+}
+/* Nuevo contenedor de label+icono */
+.input-label-check {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  color: #ddd;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+/* El icono empieza oculto (el callback cambiará a inline-block) */
+.check-icon {
+  display: none;
+  width: 24px;
+  height: auto;
+  margin-left: 8px;
+}
+
+
+/* 2) Estilos para el botón “Guardar” */
+.save-button {
+  display: none;
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  padding: 2px 10px;
+  border: none;
+  border-radius: 11px;
+  background-color: #00cc66;  /* un verde que combine con los checks */
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+}
+
+/* Efecto hover opcional */
+.save-button:hover {
+  background-color: #00b359;
+}
+
+/* 1) Modal invisible por defecto (antes tenía dos display, ¡quitamos el display:flex!) */
+#save-modal {
+  display: none;        /* arranca oculto */
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background-color: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 9999;
+}
+
+/* 2) Botón “Volver” */
+.back-button {
+  position: absolute;
+  bottom: 80px;         /* justo encima del “Guardar” */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  padding: 10px 0;
+  border: none;
+  border-radius: 6px;
+  background-color: #333;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
+.back-button:hover {
+  background-color: #444;
+}
+/* Flecha de retroceso (aparece en la pantalla “add”) */
+/* Botón flecha atrás: sin fondo ni borde, y centrado */
+.arrow-left {
+  position: absolute;
+  bottom: 16px;
+  left: 30px;
+  width: 40px;
+  height: 40px;
+  background: transparent;  /* quita fondo blanco */
+  border: none;            /* quita el borde */
+  padding: 0;              /* elimina espacio interno */
+  outline: none;           /* quita outline al hacer foco */
+  display: flex;
+  justify-content: center; /* centra horizontalmente el img */
+  align-items: center;     /* centra verticalmente el img */
+  cursor: pointer;
+}
+
+/* Opcional: elimina cualquier shadow al hacer foco */
+.arrow-left:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Asegurar que la imagen sea bloque y se ajuste */
+.arrow-left img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Botón “Acceder” en login */
+.login-button {
+  position: absolute;
+  bottom: 270px; /*se mide desde abajo */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 15px;
+  background-color: #555;    /* color neutro que destaque */
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-button:hover {
+  background-color: #666;
+}
